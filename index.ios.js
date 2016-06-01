@@ -4,40 +4,50 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 var Login = require('./component/view/Login')
 var Dimensions = require('Dimensions');
+var UserService = require('./component/network/UserService');
+
 import {
-  AppRegistry,
-  StyleSheet,
-  NavigatorIOS,
-  Text
+    AppRegistry,
+    StyleSheet,
+    NavigatorIOS,
+    TouchableHighlight,
+    ListView,
+    Text
 } from 'react-native';
 
 class maridress extends Component {
-  render() {
-    return (
 
-      <NavigatorIOS
-      style={styles.container}
-      initialRoute={{
+    view() {
+        return (
+            <NavigatorIOS
+                style={styles.container}
+                initialRoute={{
         title:"maridress",
         component: Login
 
       }}
-      >
-      </NavigatorIOS>
-    );
-  }
+            >
+            </NavigatorIOS>
+        );
+    }
+
+    render() {
+        return this.view();
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  welcome: {
-    flex:1
-  }
+    container: {
+        flex: 1,
+        marginTop: 15,
+        marginLeft: 10,
+    },
+    welcome: {
+        flex: 1
+    }
 });
 
 AppRegistry.registerComponent('maridress', () => maridress);

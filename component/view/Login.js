@@ -5,6 +5,8 @@
  */
 
 import React, { Component } from 'react';
+var UserService = require('../network/UserService');
+
 import {
   AppRegistry,
   TouchableHighlight,
@@ -14,62 +16,85 @@ import {
   Password,
   Image,
   View,
+  ListView,
 } from 'react-native';
 
 class Login extends Component {
-  goDerper(){
+  constructor(props) {
+    super(props);
+    var dataSource = new ListView.DataSource(
+      {rowHasChanged: (r1, r2) => r1.guid !== r2.guid});
+    this.state = {
+      dataSource: dataSource.cloneWithRows(this.props.listings)
+    };
+  }
 
+  goDerper(){
+      log =  UserService.getUserinfo('laurusCN');
+      console.log("eeeeeee-----".log);
+      return (
+        <Text>username
+        </Text>
+      );
   }
   render() {
-    return (
-      <View style={{backgroundColor:'#f4f4f4',flex:1}}>
-          <Image
-              style={styles.style_image}
-              source={{uri:'http://mysfony.oss-cn-hangzhou.aliyuncs.com/avatar/QQ%20Photo20140723175800.jpg'}}
-              />
-          <TextInput
-              style={styles.style_user_input}
-              placeholder='QQ号/手机号/邮箱'
-              numberOfLines={1}
-              autoFocus={true}
-              underlineColorAndroid={'transparent'}
-              textAlign='center'
-          />
-          <View
-              style={{height:1,backgroundColor:'#f4f4f4'}}
-          />
-          <TextInput
-              style={styles.style_pwd_input}
-              placeholder='密码'
-              numberOfLines={1}
-              underlineColorAndroid={'transparent'}
-              secureTextEntry={true}
-              textAlign='center'
-          />
-          <View
-              style={styles.style_view_commit}
-           >
-           <TouchableHighlight
-              onPress={()=>this.goDerper()}
-              underlayColor='#bbbbbb'
-           >
+    return this.goDerper();
 
-            <Text style={{color:'#fff'}}>
-               登录
-            </Text>
-            </TouchableHighlight>
-          </View>
-
-          <View style={{flex:1,flexDirection:'row',alignItems: 'flex-end',bottom:10}}>
-             <Text style={styles.style_view_unlogin}>
-                 无法登录?
-            </Text>
-            <Text style={styles.style_view_register}>
-                 新用户
-            </Text>
-          </View>
-      </View>
-    );
+    // <View style={{backgroundColor:'red',flex:1}}>
+    // <Text style={styles.container}>eee
+    // </Text>
+    // </View>
+    ;
+    //this.goDerper();
+    // return (
+    //   <View style={{backgroundColor:'#f4f4f4',flex:1}}>
+    //       <Image
+    //           style={styles.style_image}
+    //           source={{uri:'http://mysfony.oss-cn-hangzhou.aliyuncs.com/avatar/QQ%20Photo20140723175800.jpg'}}
+    //           />
+    //       <TextInput
+    //           style={styles.style_user_input}
+    //           placeholder='QQ号/手机号/邮箱'
+    //           numberOfLines={1}
+    //           autoFocus={true}
+    //           underlineColorAndroid={'transparent'}
+    //           textAlign='center'
+    //       />
+    //       <View
+    //           style={{height:1,backgroundColor:'#f4f4f4'}}
+    //       />
+    //       <TextInput
+    //           style={styles.style_pwd_input}
+    //           placeholder='密码'
+    //           numberOfLines={1}
+    //           underlineColorAndroid={'transparent'}
+    //           secureTextEntry={true}
+    //           textAlign='center'
+    //       />
+    //       <View
+    //           style={styles.style_view_commit}
+    //        >
+    //        <TouchableHighlight
+    //           onPress={()=>this.goDerper()}
+    //           underlayColor='#bbbbbb'
+    //        >
+    //
+    //         <Text style={{color:'#fff'}}>
+    //            登录
+    //         </Text>
+    //         </TouchableHighlight>
+    //       </View>
+    //
+    //       <View style={{flex:1,flexDirection:'row',alignItems: 'flex-end',bottom:10}}>
+    //          <Text style={styles.style_view_unlogin}>
+    //              无法登录?
+    //         </Text>
+    //         <Text style={styles.style_view_register}>
+    //              新用户
+    //         </Text>
+    //       </View>
+    //   </View>
+    // );
   }
 }
 
